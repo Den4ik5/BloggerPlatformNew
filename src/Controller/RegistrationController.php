@@ -9,6 +9,7 @@
 namespace App\Controller;
 use App\Form\UserType;
 use App\Entity\User;
+use App\Service\RegistrationEmailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +23,7 @@ class RegistrationController extends AbstractController
      * @return mixed
      * @Route("/register", name="user_registration")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, RegistrationEmailSender $emailSender)
     {
         // 1) build the form
         $user = new User();
@@ -50,10 +51,12 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
 
-                // ... do any other work - like sending them an email, etc
-                // maybe set a "flash" success message for the user
+                $checker = $emailSender->send($user->getFirstName(), $user->getLastName(), $user->getEmail());
+                if ($checker!=0) {
+                    echo "OLL KLEAR";
+                    return $this->redirectToRoute('login');
+                }
 
-                return $this->redirectToRoute('login');
             }
         }
 
