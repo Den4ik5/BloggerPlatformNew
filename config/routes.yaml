@@ -7,3 +7,8 @@ login:
 test:
     path:       /test
     controller: App\Controller\TestingController::redirectToNotCreatedYetRoute
+app_logout:
+    path: /logout
+registration:
+    path:       /register
+    controller: App\Controller\RegistrationController::register

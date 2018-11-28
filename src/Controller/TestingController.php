@@ -13,10 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TestingController extends AbstractController
 {
-    /*
-     * @
-     */
+
     public function redirectToNotCreatedYetRoute(){
         return $this->render('test/test.html.twig');
     }
+
+
 }
