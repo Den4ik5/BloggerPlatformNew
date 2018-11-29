@@ -28,6 +28,4 @@ class AdminController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
     }
 
-
-
 }

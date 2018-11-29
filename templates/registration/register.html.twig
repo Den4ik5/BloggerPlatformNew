@@ -1,11 +1,4 @@
-{{ form_start(form) }}
-
-    {{ form_row(form.email) }}
-    {{ form_row(form.firstName) }}
-    {{ form_row(form.lastName) }}
-    {{ form_row(form.Password) }}
-    {{ form_row(form.blogger) }}
-
-<button type="submit">Register!</button>
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_widget(form) }}
 {{ form_end(form) }}
-<a href="/login"> Log in</a>
+<a href="{{ path('login') }}"> Log in</a>

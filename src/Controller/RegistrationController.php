@@ -21,7 +21,6 @@ class RegistrationController extends AbstractController
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return mixed
-     * @Route("/register", name="user_registration")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, RegistrationEmailSender $emailSender)
     {

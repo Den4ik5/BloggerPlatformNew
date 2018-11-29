@@ -21,6 +21,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -34,6 +35,8 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\NotNull
      */
     private $password;
     /**
