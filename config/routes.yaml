@@ -12,3 +12,6 @@ app_logout:
 registration:
     path:       /register
     controller: App\Controller\RegistrationController::register
+forgot_password:
+    path:       /forgot_password
+    controller: App\Controller\SecurityController::forgotPassword
