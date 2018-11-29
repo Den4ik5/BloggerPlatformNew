@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -75,17 +75,17 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getLastName()
+    public function getLastName():?string
     {
         return $this->lastName;
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getFirstName()
+    public function getFirstName():?string
     {
         return $this->firstName;
     }
@@ -98,16 +98,26 @@ class User implements UserInterface
         $this->firstName = $firstName;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -147,9 +157,10 @@ class User implements UserInterface
     }
 
     /**
-     * @see UserInterface
+     * @return null|string
+     *  @see UserInterface
      */
-    public function getPassword(): string
+    public function getPassword():? string
     {
         return (string) $this->password;
     }

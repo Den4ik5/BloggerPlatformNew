@@ -5,7 +5,7 @@
  * Date: 28.11.2018
  * Time: 12:59
  */
-
+declare(strict_types=1);
 namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

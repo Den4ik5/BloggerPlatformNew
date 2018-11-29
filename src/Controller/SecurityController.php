@@ -5,7 +5,7 @@
  * Date: 28.11.2018
  * Time: 12:33
  */
-
+declare(strict_types=1);
 namespace App\Controller;
 
 
@@ -25,6 +25,7 @@ class SecurityController extends AbstractController
 {
     /**
      * @param AuthenticationUtils $authenticationUtils
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/login", name="login")
      */

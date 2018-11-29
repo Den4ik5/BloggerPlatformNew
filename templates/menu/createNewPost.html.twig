@@ -1,0 +1,8 @@
+{% if is_granted('ROLE_BLOGGER', object=null, field=null)  %}
+
+
+{% else %}
+    <script>
+        window.location = {{post.link | json_encode()}};
+    </script>
+{% endif %}

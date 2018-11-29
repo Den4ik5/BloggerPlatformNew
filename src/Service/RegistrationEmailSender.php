@@ -6,6 +6,8 @@
  * Time: 21:32
  */
 
+declare(strict_types=1);
+
 namespace App\Service;
 use Swift_Mailer;
 use Twig\Environment;

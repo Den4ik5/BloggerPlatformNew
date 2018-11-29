@@ -6,6 +6,8 @@
  * Time: 18:30
  */
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 
@@ -22,11 +24,21 @@ class PostVoter extends Voter
     const VIEW = 'view';
     const EDIT = 'edit';
     private $security;
+
+    /**
+     * PostVoter constructor.
+     * @param Security $security
+     */
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         // if the attribute isn't one we support, return false
@@ -42,6 +54,12 @@ class PostVoter extends Voter
         return true;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @param TokenInterface $token
+     * @return bool
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
@@ -67,6 +85,11 @@ class PostVoter extends Voter
         throw new \LogicException('This code should not be reached!');
     }
 
+    /**
+     * @param Post $post
+     * @param User $user
+     * @return bool
+     */
     private function canView(Post $post, User $user)
     {
         // if they can edit, they can view
@@ -79,6 +102,11 @@ class PostVoter extends Voter
         return !$post->isPrivate();
     }
 
+    /**
+     * @param Post $post
+     * @param User $user
+     * @return bool
+     */
     private function canEdit(Post $post, User $user)
     {
         // this assumes that the data object has a getOwner() method

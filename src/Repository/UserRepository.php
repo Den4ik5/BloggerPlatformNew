@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -14,6 +16,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    /**
+     * UserRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
@@ -22,7 +28,10 @@ class UserRepository extends ServiceEntityRepository
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
-
+    /**
+     * @param $value
+     * @return mixed
+     */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('u')
@@ -36,7 +45,11 @@ class UserRepository extends ServiceEntityRepository
     }
 
 
-
+    /**
+     * @param $value
+     * @return User|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneBySomeField($value): ?User
     {
         return $this->createQueryBuilder('u')
@@ -46,6 +59,12 @@ class UserRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @param $email
+     * @return User|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findByUserName($email): ?User
     {
         return $this->createQueryBuilder('u')
