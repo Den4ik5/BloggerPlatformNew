@@ -4,6 +4,8 @@
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
+   # path:       /login2
+    #controller: App\Controller\SecurityController2::login
 test:
     path:       /test
     controller: App\Controller\TestingController::redirectToNotCreatedYetRoute

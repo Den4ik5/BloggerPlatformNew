@@ -1,53 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Den
- * Date: 28.11.2018
- * Time: 12:33
- */
-declare(strict_types=1);
-namespace App\Controller;
 
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\ForgotPasswordForm;
-use App\Form\LoginForm;
-use App\Form\UserType;
 use App\Service\ForgotPasswordEmailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Validator\Constraints\Email;
 
 class SecurityController extends AbstractController
 {
     /**
      * @param AuthenticationUtils $authenticationUtils
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/login", name="login")
+     * @return Response
+     * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, Request $request){
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername=$authenticationUtils->getLastUsername();
-        $form = $this->createForm(LoginForm::class, [
-            'username' => $lastUsername,
-        ]);
-        $form->handleRequest($request);
-        return $this->render('security/login.html.twig', array(
-            'form' => $form->createView(),
-            'errors' => $error,
-        ));
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     /**
      * @param ForgotPasswordEmailSender $emailSender
      * @param UserPasswordEncoderInterface $encoder
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @throws \Exception
      * @Route("/forgot_password", name="forgot_password")
      */
@@ -92,6 +78,4 @@ class SecurityController extends AbstractController
             array('form' => $form->createView())
         );
     }
-
-
 }

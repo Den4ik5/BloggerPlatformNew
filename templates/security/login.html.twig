@@ -1,38 +1,38 @@
-{% if errors %}
-    <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
-{% endif %}
-{% if form %}
+{% extends 'base.html.twig' %}
 
-    <!--<input type="hidden" name="_target_path" value="'{'{ path('test') }}" /><!--account-->
-    <!--<input type="hidden" name="_failure_path" value="{'{' path('test') }}" /><!--forgot_password-->
-    <!--<input type="hidden" name="go_to" value="{'{ path('test') }}" /><!--dashboard-->
-    <!--<input type="hidden" name="back_to" value="{'{ path('test') }}" /><!--forgot_password-->
+{% block title %}Log in!{% endblock %}
 
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-{{ form_start(form,{'attr': {'id':'login-form'}}) }}
-<div class="form-group">
-    {{ form_label(form._username) }}
-    {{ form_widget(form._username,{'attr':{'class':'form-control'}})  }}
-</div>
-<div class="form-group">
-    {{ form_label(form._password) }}
-    {{ form_widget(form._password,{'attr':{'class':'form-control'}}) }}
-</div>
-<div class="form-group text-center">
-    <input type="checkbox" id="remember_me" name="_remember_me" checked />
-    <label for="remember_me">Remember Me</label>
-</div>
-<div class="form-group">
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-            <input type="submit" name="login-submit" value="Log in" id="login-submit" title="Log in" tabindex="4" class="form-control">
-            <input type="hidden" name="_target_path" value="{{ path('test') }}" >
-            <input type="hidden" name="_target_path" value="{{ path('test') }}" >
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
         </div>
-    </div>
-</div>
-<a href="{{ path('registration') }}"> Have not registrated yet? Just do it!</a>
-    <a href="{{ path('forgot_password') }}">Forgot password?</a>
+    #}
 
-{% endif %}
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+    <a href="{{ path('registration') }}"> Have not registrated yet? Just do it!</a>
+</form>
+    <a href="{{ path('forgot_password') }}">Forgot password?</a>
+{% endblock %}
