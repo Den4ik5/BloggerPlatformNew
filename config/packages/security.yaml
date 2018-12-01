@@ -53,6 +53,7 @@ security:
          - { path: ^/blogger, roles: ROLE_BLOGGER}
          - { path: ^/profile, roles: ROLE_USER }
     role_hierarchy:
+        ROLE_USER:      ROLE_ANONYMOUS
         ROLE_BLOGGER:   ROLE_USER
         ROLE_MODERATOR: ROLE_BLOGGER
         ROLE_ADMIN:     [ROLE_MODERATOR, ROLE_ALLOWED_TO_SWITCH]

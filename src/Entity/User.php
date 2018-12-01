@@ -18,12 +18,34 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email
      * @Assert\NotBlank
      * @OneToMany(targetEntity="App\Entity\Post", mappedBy="postCreator")
+     * @OneToMany(targetEntity="App\Entity\Follower", mappedBy="preference")
+
      */
 
     private $email;

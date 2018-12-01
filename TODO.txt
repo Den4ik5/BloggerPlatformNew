@@ -1,0 +1,21 @@
+1.AllPostsController
+2.MyProfileController
+3.KnpMenuBundle
+4.Customizing TWIG
+5.ROLE hierarchy
+6.Comments
+7.Sending Emails
+
+
+
+NEED to ADD:
+1.Popular
+2.Clickable Nick Name
+3.Preferences
+4.Add likes
+5.Specific Blog Page
+6.Moderator and Admin pages
+7.Sort by
+8.Command wich works ones in a day
+
+

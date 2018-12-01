@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * User: Den
  * Date: 01.12.2018
- * Time: 16:58
+ * Time: 22:05
  */
 
-namespace App\Form;
+namespace App\Form\MyProfile;
 
 
-use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
-class CreateNewPostForm extends AbstractType
+class MyPostsForm extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -31,5 +31,4 @@ class CreateNewPostForm extends AbstractType
             ->add('tag', TextType::class)
             ->add('create_new_post!', SubmitType::class);
     }
-
 }

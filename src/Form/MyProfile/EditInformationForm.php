@@ -3,33 +3,35 @@
  * Created by PhpStorm.
  * User: Den
  * Date: 01.12.2018
- * Time: 16:58
+ * Time: 22:21
  */
 
-namespace App\Form;
+namespace App\Form\MyProfile;
 
 
-use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CreateNewPostForm extends AbstractType
+class EditInformationForm extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('teaser', TextType::class)
-            ->add('content', TextType::class)
-            ->add('linkToPicture', TextType::class)
-            ->add('tag', TextType::class)
-            ->add('create_new_post!', SubmitType::class);
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('password', PasswordType::class)
+            ->add('new_password', PasswordType::class)
+            ->add('description', TextType::class)
+            ->add('edit!', SubmitType::class)
+        ;
     }
 
 }

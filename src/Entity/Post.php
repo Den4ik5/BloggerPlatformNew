@@ -6,6 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\ORM\Mapping\OneToMany;
+use phpDocumentor\Reflection\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -17,7 +18,7 @@ class Post
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @OneToMany(targetEntity="App\Entity\Comment", mappedBy="relatesToPostId")
-
+     * @OneToMany(targetEntity="App\Entity\Like", mappedBy="postsId")
      */
     private $id;
 
@@ -29,7 +30,67 @@ class Post
      * @ORM\Column(type="text")
      */
     private $title;
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $teaser;
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $tag;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $linkToPicture;
 
+
+    /**
+     * @return mixed
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeaser()
+    {
+        return $this->teaser;
+    }
+
+    /**
+     * @param mixed $teaser
+     */
+    public function setTeaser(string $teaser): void
+    {
+        $this->teaser = $teaser;
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function setTag(string $tag): void
+    {
+        $this->tag = $tag;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinkToPicture()
+    {
+        return $this->linkToPicture;
+    }
+
+    /**
+     * @param mixed $linkToPicture
+     */
+    public function setLinkToPicture($linkToPicture): void
+    {
+        $this->linkToPicture = $linkToPicture;
+    }
     /**
      * @return mixed
      */

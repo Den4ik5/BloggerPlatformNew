@@ -1,6 +1,6 @@
 
 {% if   is_granted('ROLE_BLOGGER')  %}
-{{ form_start(form) }}
+{{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
 {{ form_widget(form) }}
 {{ form_end(form) }}
 {% else %}

@@ -1,4 +1,4 @@
-
+{% if   is_granted('ROLE_USER')  %}
 {% block title %}Index{% endblock %}
 {% block head %}
 
@@ -7,8 +7,42 @@
     </style>
 {% endblock %}
 {% block content %}
+   {# {% for post in postCreator  %}
+    {{ post}}
+        <br>
+    {% endfor %}
+    {% for post in title  %}
+        {{ post}}
+        <br>
+    {% endfor %}
+    {% for post in teaser  %}
+        {{ post}}
+        <br>
+    {% endfor %}
+    {% for post in content%}
+        {{ post}}
+        <br>
+    {% endfor %}
+    {% for post in linkToPicture %}
+        {{ post}}
+        <br>
+    {% endfor %}
+    {% for post in tag %}
+        {{ post}}
+        <br>
+    {% endfor %}#}
+    {% for post in posts %}
+    {{ post }}
+    {% endfor %}
     <h1>Index</h1>
     <p class="important">
         Welcome on my awesome homepage.
     </p>
+    <a href="{{ logout_path(key = null) }}">Log out</a>
+
+
 {% endblock %}
+    {% else %}
+
+
+{% endif %}

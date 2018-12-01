@@ -22,4 +22,11 @@ creating_post:
     controller: App\Controller\MenuControllers\CreatePostController::createPost
 all_posts:
     path:       /view_all_posts/profile
-    controller: App\Controller\MenuControllers\AllPosts::viewAllPosts
+    controller: App\Controller\MenuControllers\AllPostsController::viewAllPosts
+edit_profile:
+    path:       /edit_profile/profile
+    controller: App\Controller\MenuControllers\MyProfileController::editProfile
+view_my_posts:
+    path:       /view_my_posts/blogger
+    controller: App\Controller\MenuControllers\MyProfileController::viewMyPosts
+
