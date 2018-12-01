@@ -20,3 +20,6 @@ forgot_password:
 creating_post:
     path:       /create_new_post/blogger
     controller: App\Controller\MenuControllers\CreatePostController::createPost
+all_posts:
+    path:       /view_all_posts/profile
+    controller: App\Controller\MenuControllers\AllPosts::viewAllPosts
