@@ -12,33 +12,23 @@ namespace App\Controller\MenuControllers;
 
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
 class AllPostsController extends AbstractController
 {
-    public function viewAllPosts(){
-        $repository = $this->getDoctrine()->getRepository(Post::class);
-        $posts = $repository->findAll();
-        $postCreator=[];
-        $content=[];
-        $title=[];
-        $linkToPicture=[];
-        $tag=[];
-        $teaser=[];
-        foreach ($posts as $post){
-            $postCreator= $post->getPostCreator();
-            $content= $post->getContent();
-            $title= $post->getTitle();
-            $linkToPicture= $post->getLinkToPicture();
-            $tag= $post->getTag();
-            $teaser= $post->getTeaser();
-        }
+    /**
+    * @Route("/view_all_posts/profile", name="all_posts", methods="GET")
+    */
+    public function viewAllPosts() : Response
+    {
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findAll();
+
+
        return $this->render('menu/allPosts.html.twig',[
-              /* 'postCreator'=>$postCreator,
-               'title'=>$title,
-               'teaser'=>$teaser,
-               'content'=>$content,
-               'linkToPicture'=>$linkToPicture,
-               'tag'=>$tag*/
-              'posts'=>$posts
+              'posts'=>$posts,
            ]
         );
     }

@@ -32,7 +32,20 @@
         <br>
     {% endfor %}#}
     {% for post in posts %}
-    {{ post }}
+    {{ post.postCreator }}
+        <br>
+        {{ post.postCreator }}
+        <br>
+        {{ post.title}}
+        <br>
+        {{ post.teaser}}
+        <br>
+        {{ post.content}}
+        <br>
+        {{ post.linkToPicture}}
+        <br>
+        {{ post.tag}}
+        <br>
     {% endfor %}
     <h1>Index</h1>
     <p class="important">
