@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -13,6 +16,8 @@ class Post
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @OneToMany(targetEntity="App\Entity\Comment", mappedBy="relatesToPostId")
+
      */
     private $id;
 
@@ -20,11 +25,32 @@ class Post
      * @ORM\Column(type="text")
      */
     private $content;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $title;
 
     /**
-     * @ORM\Column(type="object")
+     * @return mixed
      */
-    private $user;
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
+
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $postCreator;
 
     public function getId(): ?int
     {
@@ -43,14 +69,14 @@ class Post
         return $this;
     }
 
-    public function getUser()
+    public function getPostCreator()
     {
-        return $this->user;
+        return $this->postCreator;
     }
 
-    public function setUser($user): self
+    public function setPostCreator($postCreator): self
     {
-        $this->user = $user;
+        $this->postCreator = $postCreator;
 
         return $this;
     }

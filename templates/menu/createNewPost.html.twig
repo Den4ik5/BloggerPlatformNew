@@ -1,22 +1,8 @@
 
-{% extends "base.html" %}
-
-{% block title %}Index{% endblock %}
-{% block head %}
-    {{ parent() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
-{% block content %}
-    <h1>Index</h1>
-    <p class="important">
-        {% if is_granted('ROLE_BLOGGER', object=null, field=null)  %}
-
-
-        {% else %}
-            <script>
-                window.location = {{post.link | json_encode()}};
-            </script>
-        {% endif %}    </p>
-{% endblock %}
+{% if   is_granted('ROLE_BLOGGER')  %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% else %}
+<a href="{{ path('registration') }}">You can register new account using this email!</a>
+{% endif %}

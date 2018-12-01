@@ -16,11 +16,11 @@ class AppKernel
 
     public function registerBundles()
     {
-        $bundles = [
+        $bundles =  array(
             // ...
-
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-        ];
+            new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+        );
 
         // ...
     }

@@ -17,3 +17,6 @@ registration:
 forgot_password:
     path:       /forgot_password
     controller: App\Controller\SecurityController::forgotPassword
+creating_post:
+    path:       /create_new_post/blogger
+    controller: App\Controller\MenuControllers\CreatePostController::createPost

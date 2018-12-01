@@ -28,4 +28,5 @@ class BloggerController extends AbstractController
     public function bloggerDashboard(){
         $this->denyAccessUnlessGranted('ROLE_BLOGGER', null, 'User tried to access a page without having ROLE_BLOGGER');
     }
+
 }
