@@ -17,7 +17,7 @@ class TestingController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function redirectToNotCreatedYetRoute(){
-        return $this->render('base.html.twig');
+        return $this->render('test/test.html.twig');
     }
 
 

@@ -45,7 +45,7 @@ class User implements UserInterface
      * @Assert\NotBlank
      * @OneToMany(targetEntity="App\Entity\Post", mappedBy="postCreator")
      * @OneToMany(targetEntity="App\Entity\Follower", mappedBy="preference")
-
+     * @OneToMany(targetEntity="App\Entity\Notice", mappedBy="user")
      */
 
     private $email;

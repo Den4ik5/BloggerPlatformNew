@@ -21,7 +21,26 @@ class Post
      * @OneToMany(targetEntity="App\Entity\Like", mappedBy="postsId")
      */
     private $id;
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status;
 
+    /**
+     * @return mixed
+     */
+    public function getStatus(): bool
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     */
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
     /**
      * @ORM\Column(type="text")
      */

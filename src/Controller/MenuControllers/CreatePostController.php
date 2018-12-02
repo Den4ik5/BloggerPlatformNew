@@ -34,12 +34,11 @@ class CreatePostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $post->setPostCreator($postCreator);
+            $post->setStatus(true);
             $entityManager->persist($post);
             $entityManager->flush();
-            //TODO: Add route to redirect to;
-            //$this->redirectToRoute('route');
+            return $this->redirectToRoute('view_my_posts');
         }
-
             return $this->render(
             'menu/createNewPost.html.twig',
             array('form'=>$form->createView())

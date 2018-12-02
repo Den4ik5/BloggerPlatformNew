@@ -7,3 +7,7 @@ knp_menu:
   templating: false
   # the renderer to use, list is also available by default
   default_renderer: twig
+framework:
+  # ...
+  assets: ~
+   # json_manifest_path: '%kernel.root_dir%/../web/build/manifest.json'

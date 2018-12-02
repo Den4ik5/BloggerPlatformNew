@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="font-size: 18px; margin: 0; padding: 0; display: flex; justify-content: space-between; background-color: #FFFFF0; ">
+<div class ="one" style="width: 20%"></div>
+<div class ="main" style="width: 60%">
+    <div class ="header">
+        <div сlass="btn1">
+            <span><img src=""></span>
+            <a style="text-decoration: none; color: #bc9854; "  href ="#">Settings</a>
+        </div>
+        <div>
+            <a style="text-decoration: none; color: #bc9854; "  href ="#"><img src="nameofsite.jpg"></a>
+        </div>
+        <div сlass="logout" style="width: 150px; height: 50px; border: 2px solid #000000; display: flex; align-items: center; justify-content: center; transition-duration: 0.3s; transition-timing-function: ease-out;">
+            <a style="text-decoration: none; color: #bc9854; "  href ="#">Logout</a>
+        </div>
+    </div>
+    <div class ="main1" style="display: flex; justify-content: space-between;">
+        <div class="left" style="width: 25%; display: flex; flex-direction: column; justify-content: space-around; height: 450px; margin: 15px; padding: 15 px; transition-duration: 0.2s;transition-timing-function: ease-out ">
+            <a style="text-decoration: none; color: #bc9854; " href="#"><img src="miprofile.png" height="17"><p>My profile</p></a>
+            <a style="text-decoration: none; color: #bc9854; "  href="#"><img src="mypost.png" height="16"><p>My posts</p></a>
+            <a style="text-decoration: none; color: #bc9854; "  href="#"><img src="allpost.png" height="18"><p>All posts</p></a>
+            <a style="text-decoration: none; color: #bc9854; "  href="#"><img src="popular.png" height="18"><p>Popular</p></a>
+            <a style="text-decoration: none; color: #bc9854; "  href="#"><img src="like.png" height="16"><p>Preferences</p></a>
+            <a style="text-decoration: none; color: #bc9854; "  href="#"><img src="create.png" height="18"><p>Create new post</p></a>
+        </div>
+        <div class="right">
 
-<form action="{{ path('test') }}" method="post">
-
-</form>
-
-<form
-    action="{{ path('imported') }}" method="post ">
-{% if {{ knp_menu_render('App:MenuBuilder:createMainMenu') }} %}
-    FUCK DAMN YE
-{% else %}
-    FUCK DAMN NOPE
-{% endif %}
-</form>
-
-<html>
+        </div>
+    </div>
+</div>
+<div class="two"></div>
+</body>
+</html>

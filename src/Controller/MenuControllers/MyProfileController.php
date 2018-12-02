@@ -22,14 +22,17 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MyProfileController extends AbstractController
 {
+
     public function viewMyPosts(Request $request, TokenStorageInterface $tokenStorage){
+        $this->denyAccessUnlessGranted('ROLE_BLOGGER');
         $repository = $this->getDoctrine()->getRepository(Post::class);
         $postCreator=$tokenStorage->getToken()->getUsername();
-        $myPosts=$repository->findOneBy(['postCreator' => $postCreator]);
-
+        $posts=$repository->findOneBy(['postCreator' => $postCreator]);
+        return $this->render('menu/MyProfile/myPosts.html.twig',['posts'=>$posts]
+        );
     }
     public function editProfile(Request $request, TokenStorageInterface $tokenStorage,UserPasswordEncoderInterface $passwordEncoder){
-
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form=$this->createForm(EditInformationForm::class);
         $form->handleRequest($request);
         $user=$tokenStorage->getToken()->getUsername();

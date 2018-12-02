@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% if   is_granted('ROLE_BLOGGER')  %}
+
+{% extends "base.html.twig" %}
 
 {% block title %}Index{% endblock %}
 {% block head %}
@@ -8,8 +10,32 @@
     </style>
 {% endblock %}
 {% block content %}
+    {% block body %}
+    {{ parent }}
+    {% for post in posts %}
+
+        {{ post.postCreator }}
+        <br>
+        {{ post.title}}
+        <br>
+        {{ post.teaser}}
+        <br>
+        {{ post.content}}
+        <br>
+        {{ post.linkToPicture}}
+        <br>
+        {{ post.tag}}
+        <br>
+    {% endfor %}
     <h1>Index</h1>
     <p class="important">
         Welcome on my awesome homepage.
     </p>
+    <a href="{{ path('creating_post') }}">Create Post</a>
+    <a href="{{ path('admin_page') }}">Admin Page</a>
+    <a href="{{ path('all_posts') }}">All posts</a>
+    <a href="{{ path('app_logout') }}">Logout</a>
+    {% endblock %}
 {% endblock %}
+
+{% endif %}

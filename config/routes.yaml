@@ -4,8 +4,6 @@
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
-   # path:       /login2
-    #controller: App\Controller\SecurityController2::login
 test:
     path:       /test
     controller: App\Controller\TestingController::redirectToNotCreatedYetRoute
@@ -29,4 +27,16 @@ edit_profile:
 view_my_posts:
     path:       /view_my_posts/blogger
     controller: App\Controller\MenuControllers\MyProfileController::viewMyPosts
+moderator_page:
+    path:       /moderator_page/moderator
+    controller: App\Controller\ModeratorController
+admin_page:
+    path:       /admin_page/admin
+    controller: App\Controller\AdminController
+i_want_to_be_a_blogger_notice:
+    path:       /view_notice/moderator
+    controller: App\Controller\ModeratorController::viewNotice
+view_specific_user_home_page:
+    path:       /view_specific_home_page
+    controller: App\Controller\MenuControllers\ViewSpecificUserPageController::viewSpecificUsersHomePage
 

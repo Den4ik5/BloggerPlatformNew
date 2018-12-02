@@ -1,0 +1,9 @@
+{% if   is_granted('ROLE_MODERATOR')  %}
+
+{% for notice in notices %}
+    {{ notice.user }}
+    <br>
+    {{ notice.body }}
+    <br>
+{% endfor %}
+{% endif %}

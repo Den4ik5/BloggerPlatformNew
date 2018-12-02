@@ -32,9 +32,8 @@
         <br>
     {% endfor %}#}
     {% for post in posts %}
-    {{ post.postCreator }}
-        <br>
-        {{ post.postCreator }}
+
+        <a href="{{ path('view_specific_user_home_page') }}">"{{ post.postCreator }}"</a>
         <br>
         {{ post.title}}
         <br>
