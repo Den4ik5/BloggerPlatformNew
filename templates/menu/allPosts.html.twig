@@ -1,4 +1,3 @@
-{% if   is_granted('ROLE_USER')  %}
 {% block title %}Index{% endblock %}
 {% block head %}
 
@@ -7,44 +6,21 @@
     </style>
 {% endblock %}
 {% block content %}
-   {# {% for post in postCreator  %}
-    {{ post}}
-        <br>
-    {% endfor %}
-    {% for post in title  %}
-        {{ post}}
-        <br>
-    {% endfor %}
-    {% for post in teaser  %}
-        {{ post}}
-        <br>
-    {% endfor %}
-    {% for post in content%}
-        {{ post}}
-        <br>
-    {% endfor %}
-    {% for post in linkToPicture %}
-        {{ post}}
-        <br>
-    {% endfor %}
-    {% for post in tag %}
-        {{ post}}
-        <br>
-    {% endfor %}#}
-    {% for post in posts %}
 
-        <a href="{{ path('view_specific_user_home_page') }}">"{{ post.postCreator }}"</a>
-        <br>
-        {{ post.title}}
-        <br>
-        {{ post.teaser}}
-        <br>
-        {{ post.content}}
-        <br>
-        {{ post.linkToPicture}}
-        <br>
-        {{ post.tag}}
-        <br>
+    {% for post in posts %}
+        {{ include('menu/user-post.html.twig' ,{'post' : post}) }}
+            <a href="{{ path('view_specific_user_home_page') }}">"{{ post.postCreator }}"</a>
+            <br>
+            {{ post.title}}
+            <br>
+            {{ post.teaser}}
+            <br>
+            {{ post.content}}
+            <br>
+            {{ post.linkToPicture}}
+            <br>
+            {{ post.tag}}
+            <br>
     {% endfor %}
     <h1>Index</h1>
     <p class="important">
@@ -54,7 +30,4 @@
 
 
 {% endblock %}
-    {% else %}
 
-
-{% endif %}

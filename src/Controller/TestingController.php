@@ -19,6 +19,7 @@ class TestingController extends AbstractController
     public function redirectToNotCreatedYetRoute(){
         return $this->render('test/test.html.twig');
     }
-
-
+    public function redirectToNotCreatedYetRoute2(){
+        return $this->render('test/extendTest.html.twig');
+    }
 }

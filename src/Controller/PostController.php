@@ -9,36 +9,78 @@ declare(strict_types=1);
 namespace App\Controller;
 
 
+use App\Entity\Post;
+use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class PostController
+ * @package App\Controller
+ */
 class PostController extends AbstractController
 {
-    /**
-     * @param $id
-     * @Route("/posts/{id}", name="post_show")
-     */
-    public function show($id){
-        // get a Post object - e.g. query for it
-        $post = 3;
-        //TODO: Add logic for creating posts.
-        // check for "view" access: calls all voters
-        $this->denyAccessUnlessGranted('view', $post);
-    }
 
     /**
-     * @param $id
-     * @Route("/posts/{id}/edit", name="post_edit")
+     * "@Route "/post/{id}", name="post_show"
+     * @param Post $post
+     * @return Response
      */
-    public function edit($id)
+    public function show(Post $post): Response
     {
-        // get a Post object - e.g. query for it
-        $post = 3;
-        //Todo: Add logic for editing a post.
-
-        // check for "edit" access: calls all voters
-        $this->denyAccessUnlessGranted('edit', $post);
-
-        // ...
+        return $this->render('menu/MyProfile/show.html.twig',
+            ['post' => $post]);
     }
+
+    /**
+     * @param User $postCreator
+     * @return Response
+     */
+    public function userPost(User $postCreator)
+    {
+        $posts= $this->getDoctrine()->getRepository(Post::class)
+            ->findBy(
+                ['postCreator' => $postCreator]
+            );
+
+        return $this->render('menu/user-post.html.twig',
+            [
+                'posts' => $posts,
+                'user' => $postCreator,
+            ]);
+    }
+
+  /**  public function like(Post $post)
+    {
+        $currentUser = $this->getUser();
+
+        if (!$currentUser instanceof User)
+        {
+            return new JsonResponse([], Response::HTTP_UNAUTHORIZED);
+        }
+        $post->like($currentUser);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse([
+            'count' => $post->getLikedBy()->count()
+        ]);
+    }
+
+
+    public function unlike(Post $post)
+    {
+        $currentUser = $this->getUser();
+
+        if (!$currentUser instanceof User)
+        {
+            return new JsonResponse([], Response::HTTP_UNAUTHORIZED);
+        }
+        $post->getLikedBy()->removeElement($currentUser);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse([
+            'count' => $post->getLikedBy()->count()
+        ]);
+    }*/
 }
