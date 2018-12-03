@@ -148,6 +148,9 @@
                     {% if is_granted('ROLE_MODERATOR') %}
                         <a href="{{ path('i_want_to_be_a_blogger_notice') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/9aa9e066a2f6556f2b9ff8eb6cb5abcf-full.png" height="16"><p>View Notices</p></a>
                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('users_greed') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/f4da4a2a6c61907cee6655a1f4425a39-full.png" height="17"><p>Users Greed</p></a>
+                    {% endif %}
                 {% endif %}
             {% endblock sideBarMenu %}
         </div>

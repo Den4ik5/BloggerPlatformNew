@@ -6,6 +6,8 @@
  * Time: 18:03
  */
 
+declare(strict_types=1);
+
 namespace App\Controller\MenuControllers;
 
 

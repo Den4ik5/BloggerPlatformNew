@@ -58,7 +58,6 @@ class RegistrationController extends AbstractController
 
                 $checker = $emailSender->send($user->getFirstName(), $user->getLastName(), $user->getEmail());
                 if ($checker!=0) {
-                    echo "OLL KLEAR";
                     return $this->redirectToRoute('login');
                 }
 

@@ -82,7 +82,23 @@ class ModeratorController extends AbstractController
                 'form'=>$form->createView()
             ]
         );
+    }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/users_greed/moderator", name="users_greed", methods="GET")
+     */
+    public function viewGreedUsers(Request $request){
+        $this->denyAccessUnlessGranted('ROLE_MODERATOR');
+        $users =$this->getDoctrine()
+            ->getRepository(User::class)
+            ->findAll();
+
+        return $this->render('menu/usersGreed.html.twig',
+            [
+                'users'=>$users
+            ]);
     }
 
 

@@ -6,6 +6,8 @@
  * Time: 17:35
  */
 
+declare(strict_types=1);
+
 namespace App\Form\MyProfile;
 
 

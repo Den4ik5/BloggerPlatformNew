@@ -7,7 +7,6 @@
 
 {% block content%}
     {{ parent() }}
-
     {% for post in posts %}
         Email:
         <a href="{{ path('view_specific_user_home_page', {'id': post.postCreator.id }) }}">{{ post.postCreator.email }}</a>

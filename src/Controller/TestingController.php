@@ -6,6 +6,7 @@
  * Time: 18:04
  */
 declare(strict_types=1);
+
 namespace App\Controller;
 
 

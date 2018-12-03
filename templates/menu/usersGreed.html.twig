@@ -1,0 +1,19 @@
+
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content%}
+    {{ parent() }}
+        {% for user in users %}
+            Email: <a href="{{ path('view_specific_user_home_page', {'id': user.id }) }}">{{ user.email }}</a> <br>
+            Name: {{ user.lastName }} {{ user.firstName }}<br>  Description: {{ user.description }}
+            <br>
+            <button>Edit</button> <button>Delete</button> <button>Block</button>
+            <br>
+            <br>
+        {% endfor %}
+{% endblock content %}
+
