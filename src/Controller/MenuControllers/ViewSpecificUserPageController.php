@@ -14,12 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ViewSpecificUserPageController extends AbstractController
 {
-    public function viewSpecificUsersHomePage(){
+    public function viewSpecificUsersHomePage($username){
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findOneBy(['postCreator'=>$username]);
-
-        return $this->renderView('menu/MyProfile/specificUserHomePage.html.twig',[
+        $url = $this->generateUrl(
+            'view_specific_user_home_page',
+            array('slug' => $username)
+        );
+        return $this->renderView($url,[
             'posts'=>$posts
         ]);
     }

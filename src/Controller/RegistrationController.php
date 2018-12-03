@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace App\Controller;
 use App\Form\UserType;
 use App\Entity\User;
+use App\Form\WrongEmailForm;
 use App\Service\RegistrationEmailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,8 @@ class RegistrationController extends AbstractController
                 'email' => $user->getEmail(),
             ]);
             if($emailExist){
-                echo 'Email '.$user->getEmail() .' is busy! Please use another one or log in.';
+                $message=' is busy! Please choose another one or log in.';
+                return $this->wrongEmail($message,$user->getEmail());
             }
             else {
                 $password = $passwordEncoder->encodePassword($user, $user->getPassword());
@@ -62,11 +64,17 @@ class RegistrationController extends AbstractController
 
             }
         }
-
         return $this->render(
             'registration/register.html.twig',
             array('form' => $form->createView())
         );
+    }
+    public function wrongEmail(string $message, string $email){
+        return $this->render('ExceptionTemplates/wrongEmail.html.twig',
+            [
+                'message'=>$message,
+                'email'=>$email
+            ]);
     }
 
 }

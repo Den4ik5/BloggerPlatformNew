@@ -5,11 +5,8 @@ login:
     path:       /login
     controller: App\Controller\SecurityController::login
 test:
-    path:       /test
+    path:       /mainMenu
     controller: App\Controller\TestingController::redirectToNotCreatedYetRoute
-test2:
-    path:       /test2
-    controller: App\Controller\TestingController::redirectToNotCreatedYetRoute2
 app_logout:
     path: /logout
 registration:
@@ -40,7 +37,7 @@ i_want_to_be_a_blogger_notice:
     path:       /view_notice/moderator
     controller: App\Controller\ModeratorController::viewNotice
 view_specific_user_home_page:
-    path:       /view_specific_home_page
+    path:       /view_specific_home_page{username}
     controller: App\Controller\MenuControllers\ViewSpecificUserPageController::viewSpecificUsersHomePage
 user_post:
     path:       /user_post
@@ -48,4 +45,7 @@ user_post:
 post_show:
     path:       /post_show
     controller: App\Controller\PostController::show
+wrong_email:
+    path:       /wrong_email
+    controller: App\Controller\RegistrationController::wrongEmail
 

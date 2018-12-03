@@ -1,14 +1,14 @@
-{% block title %}Index{% endblock %}
+
+{% extends 'test/mainMenu.html.twig' %}
 {% block head %}
-
-    <style type="text/css">
-        .important { color: #316699; }
-    </style>
+    {{ parent() }}
+    {% block title %}{% endblock %}
 {% endblock %}
-{% block content %}
 
-    {% for post in posts %}
-        {{ include('menu/user-post.html.twig' ,{'post' : post}) }}
+    {% block content%}
+        {{ parent() }}
+        {% for post in posts %}
+
             <a href="{{ path('view_specific_user_home_page') }}">"{{ post.postCreator }}"</a>
             <br>
             {{ post.title}}
@@ -17,17 +17,14 @@
             <br>
             {{ post.content}}
             <br>
-            {{ post.linkToPicture}}
+            <a href="{{ post.linkToPicture}}">Watch me!</a>
             <br>
             {{ post.tag}}
             <br>
-    {% endfor %}
-    <h1>Index</h1>
-    <p class="important">
-        Welcome on my awesome homepage.
-    </p>
-    <a href="{{ logout_path(key = null) }}">Log out</a>
+            <br>
+            <br>
+        {% endfor %}
 
+    {% endblock content %}
 
-{% endblock %}
 

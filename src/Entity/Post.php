@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping\OneToMany;
-use phpDocumentor\Reflection\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -59,6 +58,7 @@ class Post
     private $tag;
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\Url()
      */
     private $linkToPicture;
 

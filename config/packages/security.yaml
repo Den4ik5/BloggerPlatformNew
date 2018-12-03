@@ -21,10 +21,8 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-                #TODO: Set after_login_route_name.
-                default_target_path: /test
+                default_target_path: /mainMenu
                 always_use_default_target_path: true
-                #TODO: Set login_failure_route_name.
                 failure_path: /login
             remember_me:
                 secret:   '%kernel.secret%'
@@ -32,6 +30,7 @@ security:
                 path:     /
             logout:
                 path: app_logout
+                target: /login
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator

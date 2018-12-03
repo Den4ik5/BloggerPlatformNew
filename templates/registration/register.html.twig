@@ -1,4 +1,27 @@
-{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
-    {{ form_widget(form) }}
-{{ form_end(form) }}
-<a href="{{ path('login') }}"> Log in</a>
+
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+    {% block content%}
+        {{ parent() }}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+    {% endblock content %}
+
+{#  {{ form.blogger, 'attr':{'novalidate':'novalidate'} }}
+
+
+        {{ form_start(form) }}
+        {{ form.email }}
+        {{ form.firstName }}
+        {{ form.lastName }}
+        {{ form.Password }}
+        {{ form.blogger }}
+        {{ form_end(form) }}
+        #}
