@@ -28,7 +28,7 @@ class CreateNewPostForm extends AbstractType
             ->add('content', TextType::class)
             ->add('linkToPicture', TextType::class)
             ->add('tag', TextType::class)
-            ->add('create_new_post!', SubmitType::class);
+            ->add('post!', SubmitType::class);
     }
 
 }

@@ -1,8 +1,18 @@
 
-{% if   is_granted('ROLE_BLOGGER')  %}
-{{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
-{% else %}
-<a href="{{ path('registration') }}">You can register new account using this email!</a>
-{% endif %}
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+    {% block content%}
+        {{ parent() }}
+        {% if   is_granted('ROLE_BLOGGER')  %}
+            {{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        {% else %}
+            <a href="{{ path('registration') }}">You can register new account using this email!</a>
+        {% endif %}
+
+    {% endblock content %}

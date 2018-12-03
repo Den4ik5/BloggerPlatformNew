@@ -10,29 +10,34 @@ namespace App\Controller;
 
 use App\Entity\Notice;
 use App\Entity\User;
+use App\Form\MyProfile\ButtonForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+
 
 
 /**
  * Require ROLE_MODERATOR for *every* controller method in this class.
  */
-/*
- * @IsGranted("ROLE_MODERATOR")
- */
+
 class ModeratorController extends AbstractController
 {
     /**
      * Require ROLE_MODERATOR for only this controller method.
+     * @Route("/moderator_page/moderator", name="moderator_page", methods="GET")
      *
      * @IsGranted("ROLE_MODERATOR")
      */
+
     public function moderatorDashboard()
     {
         $this->denyAccessUnlessGranted('ROLE_MODERATOR', null, 'User tried to access a page without having ROLE_MODERATOR');
+        return $this->render('menu/MyProfile/moderatorPage.html.twig');
     }
 
     /**
@@ -47,15 +52,38 @@ class ModeratorController extends AbstractController
         $entityManager->persist($notice);
         $entityManager->flush();
     }
-    public function viewNotice(){
+    public function viewNotice(Request $request){
         $this->denyAccessUnlessGranted('ROLE_MODERATOR');
         $notices = $this->getDoctrine()
             ->getRepository(Notice::class)
             ->findAll();
+        $form= $this->createForm(ButtonForm::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()){
+            echo 3;
+            $users=$this->getDoctrine()
+                ->getRepository(User::class);
+            $entityManager= $this->getDoctrine()->getManager();
+
+            foreach ($notices as $notice){
+                $username=$notice->getUser();
+                $user=$users->findOneBy(['email'=>$username]);
+                $user->setRoles(['ROLE_BLOGGER']);
+                $entityManager->remove($notice);
+                $entityManager->flush();
+                $entityManager->persist($user);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('test');
+        }
         return $this->render('menu/moderatorPageViewNotice.html.twig',[
                 'notices'=>$notices,
+                'form'=>$form->createView()
             ]
         );
+
     }
+
 
 }

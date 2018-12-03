@@ -1,9 +1,23 @@
-{% if   is_granted('ROLE_MODERATOR')  %}
 
-{% for notice in notices %}
-    {{ notice.user }}
-    <br>
-    {{ notice.body }}
-    <br>
-{% endfor %}
-{% endif %}
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content%}
+    {{ parent() }}
+    {% for notice in notices %}
+       {{ notice.user }}
+       <br>
+       {{ notice.body }}
+       <br>
+        <button>Blogger!</button>
+    {% endfor %}
+{% endblock content %}
+
+
+
+
+
+

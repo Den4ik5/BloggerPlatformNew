@@ -1,41 +1,37 @@
 {% if   is_granted('ROLE_BLOGGER')  %}
 
-{% extends "base.html.twig" %}
 
-{% block title %}Index{% endblock %}
-{% block head %}
-    {{ parent() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
-{% block content %}
-    {% block body %}
-    {{ parent }}
-    {% for post in posts %}
-
-        {{ post.postCreator }}
-        <br>
-        {{ post.title}}
-        <br>
-        {{ post.teaser}}
-        <br>
-        {{ post.content}}
-        <br>
-        {{ post.linkToPicture}}
-        <br>
-        {{ post.tag}}
-        <br>
-    {% endfor %}
-    <h1>Index</h1>
-    <p class="important">
-        Welcome on my awesome homepage.
-    </p>
-    <a href="{{ path('creating_post') }}">Create Post</a>
-    <a href="{{ path('admin_page') }}">Admin Page</a>
-    <a href="{{ path('all_posts') }}">All posts</a>
-    <a href="{{ path('app_logout') }}">Logout</a>
+    {% extends 'test/mainMenu.html.twig' %}
+    {% block head %}
+        {{ parent() }}
+        {% block title %}{% endblock %}
     {% endblock %}
-{% endblock %}
+
+    {% block content%}
+        {{ parent() }}
+
+        {% for post in posts %}
+            YOUR POSTS:
+            <br>
+            <br>
+            {{ post.title}}
+            <br>
+            Teaser:
+            {{ post.teaser}}
+            <br>
+            {{ post.content}}
+            <a href="{{ post.linkToPicture }}"> Watch me! </a>
+            Tags:
+            {{ post.tag}}
+            <br>
+            <button>Like!</button> <button>Comment</button>
+            <br>
+            <br>
+        {% endfor %}
+
+    {% endblock %}
+
+
+
 
 {% endif %}

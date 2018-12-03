@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -16,8 +17,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="postCreator")
      */
     private $id;
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="postCreator")
+     */
+    private $posts;
     /**
      * @ORM\Column(type="text", nullable=true)
      */
@@ -43,7 +49,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email
      * @Assert\NotBlank
-     * @OneToMany(targetEntity="App\Entity\Post", mappedBy="postCreator")
      * @OneToMany(targetEntity="App\Entity\Follower", mappedBy="preference")
      * @OneToMany(targetEntity="App\Entity\Notice", mappedBy="user")
      */
@@ -165,13 +170,8 @@ class User implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-        $roles[] = 'ROLE_BLOGGER';
-        $roles[] = 'ROLE_MODERATOR';
-        $roles[] = 'ROLE_ADMIN';
 
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self
@@ -213,5 +213,21 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosts():Collection
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param mixed $posts
+     */
+    public function setPosts($posts): void
+    {
+        $this->posts = $posts;
     }
 }

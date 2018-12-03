@@ -10,20 +10,47 @@ namespace App\Controller\MenuControllers;
 
 
 use App\Entity\Post;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ViewSpecificUserPageController extends AbstractController
 {
-    public function viewSpecificUsersHomePage($username){
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function prepareToViewSpecificUsersHomePage($id){
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
-            ->findOneBy(['postCreator'=>$username]);
-        $url = $this->generateUrl(
-            'view_specific_user_home_page',
-            array('slug' => $username)
+            ->findBy(['postCreator'=>$id]);
+        return $this->render('menu/MyProfile/specificUserHomePage.html.twig',
+            [
+                'posts'=>$posts,
+            ]
         );
-        return $this->renderView($url,[
-            'posts'=>$posts
+    }
+
+
+    public function myPosts(TokenStorageInterface $token){
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findBy(['postCreator'=>$token->getToken()->getUser()]);
+
+        return $this->render('menu/MyProfile/specificUserHomePage.html.twig',
+            [
+                'posts'=>$posts,
+            ]
+        );
+    }
+
+    public function myProfile(TokenStorageInterface $token){
+        return $this->render('menu/MyProfile/homePage.html.twig',
+            [
+            'user'=>$token->getToken()->getUser()
         ]);
     }
+
+
 }

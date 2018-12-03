@@ -8,19 +8,22 @@
     {% block content%}
         {{ parent() }}
         {% for post in posts %}
-
-            <a href="{{ path('view_specific_user_home_page') }}">"{{ post.postCreator }}"</a>
+            <a href="{{ path('view_specific_user_home_page', {'id': post.postCreator.id }) }}">{{ post.postCreator.email }}</a>
             <br>
+            Title:
             {{ post.title}}
             <br>
+            Teaser:
             {{ post.teaser}}
             <br>
+            <br>
             {{ post.content}}
-            <br>
-            <a href="{{ post.linkToPicture}}">Watch me!</a>
-            <br>
+            <a href="{{ post.linkToPicture }}"><p>Watch me!</p></a>
+            Tags:
             {{ post.tag}}
             <br>
+            <button>Like!</button> <button>Comment</button>
+
             <br>
             <br>
         {% endfor %}

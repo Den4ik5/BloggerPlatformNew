@@ -25,10 +25,10 @@ class AllPostsController extends AbstractController
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findAll();
-
+        $reversed=array_reverse($posts);
 
        return $this->render('menu/allPosts.html.twig',[
-              'posts'=>$posts,
+              'posts'=>$reversed,
            ]
         );
     }

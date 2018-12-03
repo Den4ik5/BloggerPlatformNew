@@ -1,15 +1,13 @@
-{% extends "base.html.twig" %}
-
-{% block title %}Index{% endblock %}
+{% extends 'test/mainMenu.html.twig' %}
 {% block head %}
     {{ parent() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
+    {% block title %}{% endblock %}
 {% endblock %}
+
 {% block content %}
-    <h1>Index</h1>
-    <p class="important">
-        Welcome on my awesome homepage.
-    </p>
-{% endblock %}
+    We Are working on it!!
+    <br>
+Your Preferences will be here very soon!!!!
+    <br>
+<img src="https://cdn1.savepice.ru/uploads/2018/12/3/c5209f191622b4124e9220344d9ef434-full.png" height="400">
+{% endblock content %}

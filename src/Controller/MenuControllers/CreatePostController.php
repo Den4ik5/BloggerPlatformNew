@@ -29,7 +29,7 @@ class CreatePostController extends AbstractController
         $post = new Post();
         $form = $this->createForm(CreateNewPostForm::class, $post);
         $form->handleRequest($request);
-        $postCreator=$tokenStorage->getToken()->getUsername();
+        $postCreator=$tokenStorage->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -37,7 +37,7 @@ class CreatePostController extends AbstractController
             $post->setStatus(true);
             $entityManager->persist($post);
             $entityManager->flush();
-            return $this->redirectToRoute('view_my_posts');
+            return $this->redirectToRoute('view_my_post');
         }
             return $this->render(
             'menu/createNewPost.html.twig',

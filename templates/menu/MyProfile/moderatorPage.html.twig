@@ -1,0 +1,20 @@
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+    You Are Moderator!!
+
+{% endblock content %}
+{% block sideBarMenu%}
+    <a href="{{ path('all_posts') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/526e2f60e6b342cea5dc1d0130738dab-full.png" height="18"><p>All posts</p></a>
+    <a href="{{ path('preferences') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/15893596da51f0e58ca344c50bb856fa-full.png" height="18"><p>Popular</p></a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('view_my_profile') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/f4da4a2a6c61907cee6655a1f4425a39-full.png" height="17"><p>My profile</p></a>
+        <a href="{{ path('view_my_post') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/9aa9e066a2f6556f2b9ff8eb6cb5abcf-full.png" height="16"><p>My posts</p></a>
+        <a href="{{ path('preferences') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/5b808fbb5bd860bda122382ab3fa659f-full.png" height="16"><p>Preferences</p></a>
+        <a href="{{ path('creating_post') }}"><img src="https://cdn1.savepice.ru/uploads/2018/12/2/3d10497cfbf9f5a9a138dc7471ab6550-full.png" height="18"><p>Create new post</p></a>
+    {% endif %}
+{% endblock %}

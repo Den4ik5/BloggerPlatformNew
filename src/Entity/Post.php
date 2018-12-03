@@ -128,7 +128,8 @@ class Post
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
+     * @@ORM\JoinColumn(nullable=true)
      */
     private $postCreator;
 
@@ -149,15 +150,15 @@ class Post
         return $this;
     }
 
-    public function getPostCreator()
+    public function getPostCreator():?User
     {
         return $this->postCreator;
     }
 
-    public function setPostCreator($postCreator): self
+    public function setPostCreator(User $postCreator)
     {
         $this->postCreator = $postCreator;
 
-        return $this;
     }
+
 }

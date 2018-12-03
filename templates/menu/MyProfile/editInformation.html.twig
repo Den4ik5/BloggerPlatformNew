@@ -1,3 +1,14 @@
-{{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+{% block body %}
+
+    {% block content %}
+        {{ form_start(form,  {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endblock content %}
+{% endblock %}
+

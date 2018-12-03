@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+homepage:
+    path:       /
+    controller: App\Controller\MenuControllers\MyProfileController::HomePage
 login:
     path:       /login
     controller: App\Controller\SecurityController::login
@@ -8,7 +8,7 @@ test:
     path:       /mainMenu
     controller: App\Controller\TestingController::redirectToNotCreatedYetRoute
 app_logout:
-    path: /logout
+    path: /
 registration:
     path:       /register
     controller: App\Controller\RegistrationController::register
@@ -27,9 +27,7 @@ edit_profile:
 view_my_posts:
     path:       /view_my_posts/blogger
     controller: App\Controller\MenuControllers\MyProfileController::viewMyPosts
-moderator_page:
-    path:       /moderator_page/moderator
-    controller: App\Controller\ModeratorController
+
 admin_page:
     path:       /admin_page/admin
     controller: App\Controller\AdminController
@@ -37,8 +35,8 @@ i_want_to_be_a_blogger_notice:
     path:       /view_notice/moderator
     controller: App\Controller\ModeratorController::viewNotice
 view_specific_user_home_page:
-    path:       /view_specific_home_page{username}
-    controller: App\Controller\MenuControllers\ViewSpecificUserPageController::viewSpecificUsersHomePage
+    path:       /view_specific_home_page/{id}
+    controller: App\Controller\MenuControllers\ViewSpecificUserPageController::prepareToViewSpecificUsersHomePage
 user_post:
     path:       /user_post
     controller: App\Controller\PostController::userPost
@@ -48,4 +46,10 @@ post_show:
 wrong_email:
     path:       /wrong_email
     controller: App\Controller\RegistrationController::wrongEmail
+view_my_post:
+    path:       /view_specific_home_page
+    controller: App\Controller\MenuControllers\ViewSpecificUserPageController::myPosts
+view_my_profile:
+    path:       /view_profile
+    controller: App\Controller\MenuControllers\ViewSpecificUserPageController::myProfile
 

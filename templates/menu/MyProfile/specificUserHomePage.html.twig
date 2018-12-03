@@ -1,14 +1,32 @@
-{% for post in posts %}
 
-<br>
-{{ post.title}}
-<br>
-{{ post.teaser}}
-<br>
-{{ post.content}}
-<br>
-{{ post.linkToPicture}}
-<br>
-{{ post.tag}}
-<br>
-{% endfor %}
+{% extends 'test/mainMenu.html.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content%}
+    {{ parent() }}
+
+    {% for post in posts %}
+        Email:
+        <a href="{{ path('view_specific_user_home_page', {'id': post.postCreator.id }) }}">{{ post.postCreator.email }}</a>
+        <br>
+        Title:
+        {{ post.title}}
+        <br>
+        Teaser:
+        {{ post.teaser}}
+        <br>
+        {{ post.content}}
+        <a href="{{ post.linkToPicture }}"><p>Watch me!</p></a>
+        Tags:
+        {{ post.tag}}
+        <br>
+        <button>Like!</button> <button>Comment</button>
+
+        <br>
+        <br>
+    {% endfor %}
+
+{% endblock %}

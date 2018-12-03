@@ -29,9 +29,6 @@ class RegistrationEmailSender
             ->setFrom('bloggerplatform2019@gmail.com')
             ->setTo([$email => 'A name'])
             ->setBody(' Hi'.$name.' '.  $lastName.'! You\'re successfully registered.');
-
-        /*   dump($this->mailer->send($message));
-           die;*/
         return $this->mailer->send($message) > 0;
     }
 }

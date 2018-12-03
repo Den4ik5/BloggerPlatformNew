@@ -35,16 +35,18 @@ class MyProfileController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
         $form=$this->createForm(EditInformationForm::class);
         $form->handleRequest($request);
-        $user=$tokenStorage->getToken()->getUsername();
-        var_dump($user);
+        $user=$tokenStorage->getToken()->getUser();
 
         if($form->isSubmitted()&&$form->isValid()){
+            $user=$tokenStorage->getToken()->getUser();
 
         }
-
         return $this->render('menu/MyProfile/editInformation.html.twig',
             array('form'=>$form->createView())
         );
+    }
+    public function HomePage(){
+        return $this->render('test/mainMenu.html.twig');
     }
 
 }
